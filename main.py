@@ -5,7 +5,7 @@ from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 import os
 
-TOKEN = os.getenv("8625476937:AAHXIk5bn4K1f8kTrZ9D5MUd2o0PRFqndrg")
+TOKEN = "8625476937:AAHXIk5bn4K1f8kTrZ9D5MUd2o0PRFqndrg"
 CHANNEL_LINK = "https://t.me/+GQvYBe-YqAcyYjBl"
 
 logging.basicConfig(level=logging.INFO)
