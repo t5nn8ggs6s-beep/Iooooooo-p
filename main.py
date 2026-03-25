@@ -3,11 +3,11 @@ import asyncio
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
-# 🔑 Прямой токен (никаких getenv)
+# 🔑 Прямой токен
 TOKEN = "8625476937:AAHXIk5bn4K1f8kTrZ9D5MUd2o0PRFqndrg"
 CHANNEL_LINK = "https://t.me/+GQvYBe-YqAcyYjBl"
 
-# Клавиатура меню
+# Меню
 menu_keyboard = ReplyKeyboardMarkup(
     [["🔑 Ввести код"], ["ℹ️ Как получить код"]],
     resize_keyboard=True
@@ -33,18 +33,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif text.isdigit():
         code = int(text)
         msg = await update.message.reply_text("⏳ Проверяю код...")
+        # Анимация загрузки
+        for step in ["🔍 Ищу фильм...", "📡 Подключаю доступ...", "⌛ Подготовка..."]:
+            await asyncio.sleep(1)
+            await msg.edit_text(step)
         await asyncio.sleep(1)
-        await msg.edit_text("🔍 Ищу фильм...")
-        await asyncio.sleep(1)
-        await msg.edit_text("📡 Подключаю доступ...")
-        await asyncio.sleep(1)
-
+        # Проверка кода
         if 300 <= code <= 3000:
             await msg.edit_text(f"✅ Код принят!\n🎬 Смотреть фильм:\n{CHANNEL_LINK}")
         else:
             await msg.edit_text("❌ Неверный код\nПопробуй ещё раз")
     else:
-        await update.message.reply_text("❗ Используй кнопки ниже")
+        await update.message.reply_text("❗ Используй кнопки меню ниже")
 
 # Создаём приложение PTB v20+ без Updater
 app = ApplicationBuilder().token(TOKEN).build()
