@@ -4,7 +4,7 @@ from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
 # Получаем токен из переменных окружения
-TOKEN = os.getenv(8625476937:AAHXIk5bn4K1f8kTrZ9D5MUd2o0PRFqndrg"")
+TOKEN = "8625476937:AAHXIk5bn4K1f8kTrZ9D5MUd2o0PRFqndrg"
 if not TOKEN:
     raise ValueError("TOKEN не найден! Добавь его в Railway Variables")
 
